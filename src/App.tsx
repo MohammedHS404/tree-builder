@@ -495,6 +495,39 @@ function NodeComponent({ node }: Readonly<{ node: Node }>) {
 
     node.move(points);
 
+    if (node.parent) {
+      const currentNodePoints = node.parent.points;
+
+      const lineNodePoints = node.points;
+
+      const topLeftOfKey = currentNodePoints[0];
+
+      const topRightOfKey = currentNodePoints[1];
+
+      const bottomRightToLine = lineNodePoints[2];
+
+      const bottomLeftToLine = lineNodePoints[3];
+
+      const isBottomRightIsLeftOfTopLeft = bottomRightToLine.x < topLeftOfKey.x;
+
+      const isBottomRightAboveTopLeft = bottomRightToLine.y < topRightOfKey.y;
+
+      const isLineAboveAndLeftToTopLeftOfKey =
+        isBottomRightIsLeftOfTopLeft && isBottomRightAboveTopLeft;
+
+      const isBottomLeftIsLeftOfTopRight =
+        bottomLeftToLine.x <= topRightOfKey.x;
+
+      const isBottomLeftIsAboveTopRight = bottomLeftToLine.y <= topRightOfKey.y;
+
+      const isLineAboveAndLeftToTopRightOfKey =
+        isBottomLeftIsLeftOfTopRight && isBottomLeftIsAboveTopRight;
+
+      const isLine =
+        isLineAboveAndLeftToTopLeftOfKey || isLineAboveAndLeftToTopRightOfKey;
+
+      setIsLine(isLine);
+    }
   }, [mousePosition]);
 
   function handleClicked(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
