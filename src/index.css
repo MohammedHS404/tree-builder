@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, #8080802e 1px, transparent 1px),
+    linear-gradient(to bottom, #80808070 1px, transparent 1px);
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
